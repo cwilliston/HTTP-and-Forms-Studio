@@ -4,16 +4,41 @@
 	<meta charset="utf-8">
 	<script>
 		// TODO: create a handler
+		function setSearchEngine (searchTerm){
+			let engine = document.querySelector("input[name=engine]:checked").value;
+			let actions = {
+				"google": "https://www.google.com/search",
+				"duck": "https://duckduckgo.com/",
+				"bing": "https://bing.com/search",
+				"ask": "https://www.ask.com/web",
+			}
+
+			let formSubmit = document.getElementById("searchForm");
+			formSubmit.setAttribute("action", (actions[engine])+"?q="+searchTerm);
+		}
     window.addEventListener("load", function(){
-        // TODO: register the handler
+        let formSubmit = document.getElementById("searchForm");
+		formSubmit.addEventListener("submit", function(){
+			setSearchEngine();
+		});
     });
 	</script>
 </head>
 
 <body>
+	<div style="text-align: center; background-color: lightgray; padding: 150px">
+	<form id="searchForm" action="">
+    	<h1><label>Search: <input type="text" name="q"/></label></h1>
+		<br><br>
+		<h2>Select your search engine:<br></h2>
+		<ul style="text-align:left; margin-left:30%; font-size: 18px">
+		<label>Google<input type="radio" name="engine" value="google"/></label><br>
+		<label>DuckDuckGo<input type="radio" name="engine" value="duck"/></label><br>
+		<label>Bing<input type="radio" name="engine" value="bing"/></label><br>
+		<label>Ask<input type="radio" name="engine" value="ask"/></label>
 
-	<form id="searchForm">
-    <!-- TODO: add form elements -->
+		</ul>
+		<button style="background-color:aquamarine; cursor:pointer; font-size:36; border-radius:50%; width:75px; height:75px">Go!</button>
 	</form>
-
+	</div>
 </body>
